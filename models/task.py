@@ -5,7 +5,7 @@ class Task:
     self.description = description
     self.completed = completed
 
-  def to_dict(self):
+  def parse_to_dictionary(self):
     return {
       "id": self.id,
       "title": self.title,
