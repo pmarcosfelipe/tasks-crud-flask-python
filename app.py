@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 tasks = []
 task_id_control = 1
+
 @app.route("/tasks", methods=["POST"])
 def create():
   global task_id_control
@@ -14,6 +15,20 @@ def create():
   tasks.append(new_test)
   print(tasks)
   return jsonify({ "message" : "New task created successfully!"})
+
+@app.route("/tasks", methods=["GET"])
+def get():
+  task_list = [task.to_dict() for task in tasks]
+
+  # for task in tasks:
+  #   task_list.append(task.to_dict())
+
+  response = {
+    "tasks": task_list,
+    "total_tasks": len(task_list)
+  }
+
+  return jsonify(response)
 
 # validation for development server
 if __name__ == "__main__":
