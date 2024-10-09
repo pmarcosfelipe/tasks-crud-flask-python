@@ -57,6 +57,21 @@ def update_task_by_id(taskId):
   return jsonify({ "message" : "Task updated successfully!"})
 
 
+@app.route("/tasks/<int:taskId>", methods=["DELETE"])
+def delete_task_by_id(taskId):
+  task = None
+  for t in tasks:
+    if(t.id == taskId):
+      task = t
+      break
+
+  if not task:
+    return jsonify({ "message" : "No task found!"}), 404
+  
+  tasks.remove(task)
+
+  return jsonify({ "message" : "Task deleted successfully!"})
+
 # validation for development server
 if __name__ == "__main__":
   app.run(debug=True)
