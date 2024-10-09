@@ -34,11 +34,27 @@ def get_task_by_id(taskId):
   for t in tasks:
     if(t.id == taskId):
       task_response = t.parse_to_dictionary()
-      # del task_response["id"]
 
       return jsonify(task_response)
     
-  return jsonify({ "message" : "No task found!"}), 400
+  return jsonify({ "message" : "No task found!"}), 404
+
+@app.route("/tasks/<int:taskId>", methods=["PUT"])
+def update_task_by_id(taskId):
+  task = None
+  for t in tasks:
+    if(t.id == taskId):
+      task = t
+
+  if task == None:
+    return jsonify({ "message" : "No task found!"}), 404
+  
+  data = request.get_json()
+  task.title = data["title"]
+  task.description = data["description"]
+  task.completed = data["completed"]
+
+  return jsonify({ "message" : "Task updated successfully!"})
 
 
 # validation for development server
