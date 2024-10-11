@@ -21,3 +21,10 @@ This project consists in create REST API for a Task List CRUD using Python's fra
 ```python
 python app.py
 ```
+
+## Run Tests
+
+```python
+python app.py
+pytest tests.py -v
+```
