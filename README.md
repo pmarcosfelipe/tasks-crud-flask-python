@@ -1,4 +1,4 @@
-# Battle Game Python
+# Task List CRUD
 
 This project consists in create REST API for a Task List CRUD using Python's framework [Flask](https://flask.palletsprojects.com/en/3.0.x/).
 
